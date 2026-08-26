@@ -1,6 +1,6 @@
 /* Ballester Finances — service worker. Network-first for shell + data (updates land
    immediately when online), cache-first for libraries and icons → works offline in flight. */
-const VERSION = "bf-v19";
+const VERSION = "bf-v20";
 const CACHE = "ballester-finances-" + VERSION;
 const PRECACHE = ["./", "./index.html", "./chart.umd.js", "./sankey.js", "./data.enc.json",
                   "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-180.png"];
