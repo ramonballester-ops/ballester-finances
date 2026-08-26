@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Ballester Finances</title>
+<title>Ballester Finances — Isabel</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <meta name="theme-color" content="#121722">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Finances">
-<link rel="apple-touch-icon" href="./icon-180.png">
-<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="apple-touch-icon" href="../icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
@@ -65,7 +65,7 @@
 <script>
 (function () {
   "use strict";
-  var BUILD = "v13";
+  var BUILD = "isabel-v1";
   document.getElementById("stamp").textContent = "build " + BUILD;
 
   if ("serviceWorker" in navigator) {
@@ -77,7 +77,7 @@
   var msgEl = document.getElementById("msg");
   var passEl = document.getElementById("pass");
   var goEl = document.getElementById("go");
-  var payloadPromise = fetch("./data.enc.json?v=" + BUILD, { cache: "no-cache" })
+  var payloadPromise = fetch("../data.enc.json?v=" + BUILD, { cache: "no-cache" })
     .then(function (r) { if (!r.ok) throw new Error("fetch " + r.status); return r.json(); });
 
   function b64ToBytes(s) {
@@ -104,8 +104,8 @@
   }
   function boot(plain) {
     return Promise.all([
-      fetch("./chart.umd.js").then(function (r) { return r.text(); }),
-      fetch("./sankey.js").then(function (r) { return r.text(); })
+      fetch("../chart.umd.js").then(function (r) { return r.text(); }),
+      fetch("../sankey.js").then(function (r) { return r.text(); })
     ]).then(function (libs) {
       var closer = "</" + "script>";
       var html = plain.content +
@@ -114,6 +114,7 @@
         "<script>" + plain.data + closer +
         "<script>" + plain.prices + closer +
         "<script>" + plain.app + closer;
+      window.APP_VARIANT = "isabel";
       document.open();
       document.write(html);
       document.close();
